@@ -39,11 +39,12 @@
 @end
 
 @interface ReaderViewController : UIViewController{
-    ReaderMainToolbar *mainToolbar;
-
+    
 }
 
 @property (nonatomic, weak, readwrite) id <ReaderViewControllerDelegate> delegate;
+@property (nonatomic, strong, readwrite) ReaderMainToolbar *mainToolbar;
+
 
 - (instancetype)initWithReaderDocument:(ReaderDocument *)object;
 

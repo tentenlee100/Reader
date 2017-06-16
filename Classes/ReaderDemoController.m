@@ -180,10 +180,15 @@
 
 	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
 	{
+        document.canExport = NO;
+        document.canPrint = NO;
+        document.canEmail = NO;
+        
 		ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
 
 		readerViewController.delegate = self; // Set the ReaderViewController delegate to self
-
+        readerViewController.title = @"test";
+        
 #if (DEMO_VIEW_CONTROLLER_PUSH == TRUE)
 
 		[self.navigationController pushViewController:readerViewController animated:YES];

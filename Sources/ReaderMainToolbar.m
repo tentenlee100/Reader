@@ -29,6 +29,14 @@
 
 #import <MessageUI/MessageUI.h>
 
+@interface ReaderMainToolbar(){
+    
+}
+
+@property (nonatomic,strong) UILabel *titleLabel;
+
+@end
+
 @implementation ReaderMainToolbar
 {
 	UIButton *markButton;
@@ -56,6 +64,13 @@
 #pragma mark - Properties
 
 @synthesize delegate;
+
+- (void)setTitle:(NSString *)title{
+    _title = title;
+    
+    self.titleLabel.text = title;
+    
+}
 
 #pragma mark - ReaderMainToolbar instance methods
 
@@ -233,13 +248,17 @@
 			titleLabel.backgroundColor = [UIColor clearColor];
 			titleLabel.adjustsFontSizeToFitWidth = YES;
 			titleLabel.minimumScaleFactor = 0.75f;
-			titleLabel.text = [document.fileName stringByDeletingPathExtension];
+            
+
+            titleLabel.text = [document.fileName stringByDeletingPathExtension];
+            
 #if (READER_FLAT_UI == FALSE) // Option
 			titleLabel.shadowColor = [UIColor colorWithWhite:0.75f alpha:1.0f];
 			titleLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
 #endif // end of READER_FLAT_UI Option
 
-			[self addSubview:titleLabel]; 
+            self.titleLabel = titleLabel;
+			[self addSubview:self.titleLabel];
 		}
 	}
 

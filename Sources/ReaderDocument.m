@@ -71,7 +71,7 @@
 @synthesize password = _password;
 @synthesize filePath = _filePath;
 @dynamic fileName, fileURL;
-@dynamic canEmail, canExport, canPrint;
+//@dynamic canEmail, canExport, canPrint;
 
 #pragma mark - ReaderDocument class methods
 
@@ -221,7 +221,11 @@
 			{
 				NSAssert(NO, @"CGPDFDocumentRef == NULL");
 			}
-
+            
+            self.canEmail = YES;
+            self.canPrint = YES;
+            self.canExport = YES;
+            
 			_lastOpen = [NSDate dateWithTimeIntervalSinceReferenceDate:0.0];
 
 			NSFileManager *fileManager = [NSFileManager defaultManager]; // Singleton
@@ -231,6 +235,8 @@
 			_fileDate = [fileAttributes objectForKey:NSFileModificationDate]; // File date
 
 			_fileSize = [fileAttributes objectForKey:NSFileSize]; // File size (bytes)
+
+            
 
 			[self archiveDocumentProperties]; // Archive ReaderDocument object
 		}
@@ -257,20 +263,20 @@
 	return _fileURL;
 }
 
-- (BOOL)canEmail
-{
-	return YES;
-}
-
-- (BOOL)canExport
-{
-	return YES;
-}
-
-- (BOOL)canPrint
-{
-	return YES;
-}
+//- (BOOL)canEmail
+//{
+//	return YES;
+//}
+//
+//- (BOOL)canExport
+//{
+//	return YES;
+//}
+//
+//- (BOOL)canPrint
+//{
+//	return YES;
+//}
 
 - (BOOL)archiveDocumentProperties
 {
