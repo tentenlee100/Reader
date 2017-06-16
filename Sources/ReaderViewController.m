@@ -26,7 +26,6 @@
 #import "ReaderConstants.h"
 #import "ReaderViewController.h"
 #import "ThumbsViewController.h"
-#import "ReaderMainToolbar.h"
 #import "ReaderMainPagebar.h"
 #import "ReaderContentView.h"
 #import "ReaderThumbCache.h"
@@ -44,7 +43,6 @@
 
 	UIScrollView *theScrollView;
 
-	ReaderMainToolbar *mainToolbar;
 
 	ReaderMainPagebar *mainPagebar;
 
@@ -481,7 +479,16 @@
 		[self updateContentViews:theScrollView]; lastAppearSize = CGSizeZero;
 	}
 }
-
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    if (CGSizeEqualToSize(theScrollView.contentSize, CGSizeZero) == false)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self updateContentViews:theScrollView]; lastAppearSize = CGSizeZero;
+        });
+    }
+}
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
 	ignoreDidScroll = NO;

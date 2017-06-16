@@ -37,3 +37,12 @@
 #define READER_DISABLE_IDLE FALSE
 #define READER_STANDALONE FALSE
 #define READER_BOOKMARKS TRUE
+
+
+@interface Constants : NSObject
+
++ (NSBundle *)defaultBundle;
+
+
+
+@end
