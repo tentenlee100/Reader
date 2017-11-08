@@ -363,6 +363,10 @@
 
 	CGRect pagebarRect = self.view.bounds; pagebarRect.size.height = PAGEBAR_HEIGHT;
 	pagebarRect.origin.y = (self.view.bounds.size.height - pagebarRect.size.height);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && [UIScreen mainScreen].nativeBounds.size.height == 2436  ) {
+        //iPhone X
+        pagebarRect.origin.y = pagebarRect.origin.y - 44.0;
+    }
 	mainPagebar = [[ReaderMainPagebar alloc] initWithFrame:pagebarRect document:document]; // ReaderMainPagebar
 	mainPagebar.delegate = self; // ReaderMainPagebarDelegate
 	[self.view addSubview:mainPagebar];

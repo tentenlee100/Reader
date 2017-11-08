@@ -216,6 +216,7 @@
 				_pageCount = [NSNumber numberWithInteger:pageCount];
 
 				CGPDFDocumentRelease(thePDFDocRef); // Cleanup
+                thePDFDocRef = NULL;
 			}
 			else // Cupertino, we have a problem with the document
 			{
@@ -297,7 +298,8 @@
 
 		_pageCount = [NSNumber numberWithInteger:pageCount];
 
-		CGPDFDocumentRelease(thePDFDocRef); // Cleanup
+		CGPDFDocumentRelease(thePDFDocRef);
+        thePDFDocRef = NULL;// Cleanup
 	}
 
 	NSFileManager *fileManager = [NSFileManager defaultManager]; // Singleton
